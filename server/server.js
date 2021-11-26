@@ -21,8 +21,7 @@ app.listen(port, () => {
 });
 
 
-// eslint-disable-next-line no-undef
-feedNow = () => {
+rotateNow = () => {
     setInterval(() => {
 
         motor.servoWrite(pulsewidth);
@@ -35,9 +34,8 @@ feedNow = () => {
 }
 
 
-app.get('/feed', (req, res) => {
-    // eslint-disable-next-line no-undef
-    feedNow();
+app.get('/rotate', (req, res) => {
+    rotateNow();
     res.send('success')
 });
 
@@ -46,7 +44,7 @@ app.post('/schedule', (req, res) => {
     let time = new Date(req.body.time)
     schedule.scheduleJob(time, function () {
         // eslint-disable-next-line no-undef
-        feedNow();
+        rotateNow();
     });
     res.send(`Servo will run at ${time}`);
 });
