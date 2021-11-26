@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Modal, ModalBody, ModalFooter, ModalTitle} from 'react-bootstrap';
 import ModalHeader from "react-bootstrap/ModalHeader";
 import DateTimePicker from "react-datetime-picker";
-export default class Feeder extends Component {
+export default class Rotate extends Component {
   // This is the constructor that stores the data.
   constructor(props) {
     super(props);
