@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 const Gpio = require('pigpio').Gpio;
+
 //Pin connected to yellow wire
 const motor = new Gpio(17, {mode: Gpio.OUTPUT});
 
@@ -21,7 +22,7 @@ app.listen(port, () => {
 });
 
 
-rotateNow = () => {
+function rotateNow() {
     setInterval(() => {
 
         motor.servoWrite(pulsewidth);
@@ -32,7 +33,6 @@ rotateNow = () => {
         }
     }, 500);
 }
-
 
 app.get('/rotate', (req, res) => {
     rotateNow();
