@@ -29,6 +29,5 @@ Open a terminal on your machine and do the following:
 
 # Other
 
-Check out [Node Schedule](https://github.com/node-schedule/node-schedule) for cron-like scheduling.
-
-
+* Check out [Node Schedule](https://github.com/node-schedule/node-schedule) for cron-like scheduling.
+* Check out [Pigpio](https://github.com/fivdi/pigpio) to control other devices on the pi using js such as accelerometers, LEDs and ultrasonic sensors
