@@ -11,8 +11,8 @@ export default class Rotate extends Component {
   constructor(props) {
     super(props);
 
-    this.handleShowFeed = this.handleShowFeed.bind(this);
-    this.handleCloseFeed = this.handleCloseFeed.bind(this);
+    this.handleShowRotate = this.handleShowRotate.bind(this);
+    this.handleCloseRotate = this.handleCloseRotate.bind(this);
     this.handleShowSchedule = this.handleShowSchedule.bind(this);
     this.handleCloseSchedule = this.handleCloseSchedule.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
@@ -20,33 +20,22 @@ export default class Rotate extends Component {
     this.state = {
       feedback: "",
       time: "",
-      isShowingFeed: false,
+      isShowingRotate: false,
       isShowingSchedule: false,
       date: new Date(),
     };
   }
 
-  handleShowFeed = () => {
-    //start of current time 'obtainer'. very optional.
-    let date = new Date();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    let currentTime = hours + ':' + minutes + ' ' + ampm;
-    //end
-    axios.get('http:Your raspberry pi IP address:5000/feed').then(response => this.setState({
+  handleShowRotate = () => {
+    axios.get('http:Your raspberry pi IP address:5000/rotate').then(response => this.setState({
       feedback: response.data,
-      isShowingFeed: true,
-      time: currentTime
+      isShowingRotate: true,
     }));
   }
 
-  handleCloseFeed = () => {
+  handleCloseRotate = () => {
     this.setState({
-      isShowingFeed: false
+      isShowingRotate: false
     })
   }
   handleShowSchedule = () => {
@@ -71,7 +60,7 @@ export default class Rotate extends Component {
         this.handleCloseSchedule();
         this.setState({
           feedback: response.data,
-          isShowingFeed:true
+          isShowingRotate:true
         })
       }
     )
@@ -81,11 +70,11 @@ export default class Rotate extends Component {
     return (
       <div>
         <br/><br/>
-      <button onClick={this.handleShowFeed}>Feed</button>
+      <button onClick={this.handleShowRotate}>Rotate</button>
         <br/><br/>
       <button onClick={this.handleShowSchedule}>Schedule</button>
         <div>
-          <Modal show={this.state.isShowingFeed} onHide={this.handleCloseFeed}>
+          <Modal show={this.state.isShowingRotate} onHide={this.handleCloseRotate}>
             <ModalHeader closeButton>
               <ModalTitle>
                 Congratulations
@@ -95,14 +84,14 @@ export default class Rotate extends Component {
               {this.state.feedback + " at " + this.state.time}
             </ModalBody>
             <ModalFooter>
-              <Button variant={"secondary"} onClick={this.handleCloseFeed}>
+              <Button variant={"secondary"} onClick={this.handleCloseRotate}>
                 Close
               </Button>
             </ModalFooter>
           </Modal>
           <Modal show={this.state.isShowingSchedule} onHide={this.handleCloseSchedule}>
           <ModalHeader closeButton>
-            <ModalTitle>Schedule feeding time</ModalTitle>
+            <ModalTitle>Schedule Rotation</ModalTitle>
           </ModalHeader>
             <ModalBody>
               <DateTimePicker onChange={this.changeDate} value={this.state.date}>
