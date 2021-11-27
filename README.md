@@ -5,10 +5,9 @@ Controlling servomotor with [Create React App](https://github.com/facebook/creat
 ## Prerequisites
 * Raspberry pi
 * Node Js
-* Git
 * pigpio C library
 
-# Running on your Raspberry Pi
+# Running
 
 Open a terminal on your machine and do the following:
 
@@ -22,8 +21,14 @@ Open a terminal on your machine and do the following:
     * Run ```npm start``` to start the backend server at https://localhost:5000
     * This code works with the yellow servomotor wire connected to pin 17. Edit server.js to in case you want to use a different pin.
 * Navigate back to the project root and run ```npm start``` to start the frontend server at https://localhost:3000.
-* Edit Rotate.js and replace <your raspberry pi IP address> wih your actual pi address.
+* Edit Rotate.js and replace ```your_raspberry_pi_address``` wih your actual pi address.
 
 # Servomotor connection
 
 <img src="https://raw.githubusercontent.com/fivdi/pigpio/master/example/servo.png">
+
+# Other
+
+Check out [Node Schedule](https://github.com/node-schedule/node-schedule) for cron-like scheduling.
+
+
